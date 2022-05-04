@@ -1,11 +1,17 @@
 package com.lotr.hunt.game;
 
+import com.lotr.hunt.entities.Encounter;
+import com.lotr.hunt.entities.Enemy;
 import com.lotr.hunt.entities.Hero;
+import com.lotr.hunt.entities.Location;
+import com.lotr.hunt.entities.location.Forest;
+import com.lotr.hunt.util.ForestMessages;
 import com.lotr.hunt.util.PlayerAction;
 import com.lotr.hunt.util.Info;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -23,6 +29,7 @@ public class GameApp {
     public static void main(String[] args) {
         path = new ArrayList<>();
         Hero hero = new Hero();
+        Encounter mainEncounter = new Encounter();
 
         System.out.println("\nWelcome to 'The Hunt'! This is a command-based game developed with Java 17.\n" +
                 "Version: " + Info.VERSION + "\n" +
@@ -34,15 +41,41 @@ public class GameApp {
                 "Health points: " + hero.getHpPoints() +"\n" +
                 "Coins: " + hero.getCoins() +"\n");
 
+        boolean gameJustStarted = false;
+        heroIsAlive = true;
+        hobbitsRescued = true; // TODO: Correct this to FALSE in the very start.
 
-        do {
+        while (isHuntAlive()){
+            if (PlayerAction.EXIT.getCommand().equals(userInput)) {
+                break;
+            }
             System.out.println("\nHere will be the main gameplay code...");
             System.out.println("...");
             System.out.println("...\n");
-            heroIsAlive = true;
-            hobbitsRescued = true;
+
+            if (path.size() == 0) {
+                gameJustStarted = true;
+                System.out.println("This is the first message"); //TODO: Change this obviously
+            }
+
+            //Here generate encounter
+            //If game just started the first encounter is location
+            if (gameJustStarted) {
+                Location location = mainEncounter.generateLocation();
+                int stepsInLocation = location.getNumberOfSteps(); // todo: maybe use this in a loop ?
+                gameJustStarted = false;
+                String message = location.pickUpAvailableMessage();
+                System.out.println("This is the messaged I found");
+                System.out.println(message);
+            }
+            else {
+                //todo
+            }
 
 
+
+
+            // Here will be the choices and actions of the user
             System.out.println("-------------------- Choose wisely --------------------");
             System.out.println("-- 1. Choice 1");
             System.out.println("-- 2. Choice 2");
@@ -53,8 +86,7 @@ public class GameApp {
 
             Scanner scanner = new Scanner(System.in);
             userInput = scanner.nextLine();
-
-        } while (isHuntAlive());
+        }
 
         System.out.println("Your adventure ends here!\n");
         if (!heroIsAlive) {
@@ -70,6 +102,6 @@ public class GameApp {
     }
 
     public static boolean isHuntAlive() {
-        return heroIsAlive && !hobbitsRescued && !"E".equals(userInput);
+        return heroIsAlive && !hobbitsRescued && !PlayerAction.EXIT.getCommand().equals(userInput);
     }
 }

@@ -1,6 +1,7 @@
 package com.lotr.hunt.entities.weapon;
 
 import com.lotr.hunt.entities.Weapon;
+import com.lotr.hunt.util.WeaponType;
 
 /**
  * @author Konstantinos Tsigkounis
@@ -9,7 +10,8 @@ import com.lotr.hunt.entities.Weapon;
 public class Sword extends Weapon {
 
     public Sword() {
-        setAttack(20);
+        setAttack(15);
+        setType(WeaponType.SWORD.getName());
     }
 
 }

@@ -7,24 +7,4 @@ package com.lotr.hunt.entities;
 
 public class Enemy extends Warrior {
 
-    private int hpPoints;
-
-    public int getHpPoints() {
-        return hpPoints;
-    }
-
-    public void setHpPoints(int hpPoints) {
-        this.hpPoints = hpPoints;
-    }
-
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
-    }
-
-    private Weapon weapon;
-
 }

@@ -10,7 +10,8 @@ import com.lotr.hunt.entities.weapon.Dagger;
 public class Skeleton extends Enemy {
 
     public Skeleton() {
-        setHpPoints(5);
+        setMaxHpPoints(10);
+        setHpPoints(10);
         setWeapon(new Dagger());
     }
 }
