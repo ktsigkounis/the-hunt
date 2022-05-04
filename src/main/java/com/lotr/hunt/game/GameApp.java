@@ -1,17 +1,13 @@
 package com.lotr.hunt.game;
 
 import com.lotr.hunt.entities.Encounter;
-import com.lotr.hunt.entities.Enemy;
 import com.lotr.hunt.entities.Hero;
 import com.lotr.hunt.entities.Location;
-import com.lotr.hunt.entities.location.Forest;
-import com.lotr.hunt.util.ForestMessages;
-import com.lotr.hunt.util.PlayerAction;
 import com.lotr.hunt.util.Info;
+import com.lotr.hunt.util.PlayerAction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -23,11 +19,10 @@ public class GameApp {
 
     private static boolean heroIsAlive;
     private static boolean hobbitsRescued;
-    private static List<String> path;
     private static String userInput;
 
     public static void main(String[] args) {
-        path = new ArrayList<>();
+        List<String> path = new ArrayList<>();
         Hero hero = new Hero();
         Encounter mainEncounter = new Encounter();
 
@@ -37,17 +32,20 @@ public class GameApp {
                 "Your main task is to search and rescue Merry and Pippin before the horde of Orcs reach Isengard.\n" +
                 "You can control your decisions through command choices.\n\n" +
                 "Your initial carrying are:\n" +
-                "Weapon: " + hero.getWeapon().getType() +"\n" +
-                "Health points: " + hero.getHpPoints() +"\n" +
-                "Coins: " + hero.getCoins() +"\n");
+                "Weapon: " + hero.getWeapon().getType() + "\n" +
+                "Health points: " + hero.getHpPoints() + "\n" +
+                "Coins: " + hero.getCoins() + "\n");
 
         boolean gameJustStarted = false;
         heroIsAlive = true;
         hobbitsRescued = true; // TODO: Correct this to FALSE in the very start.
 
-        while (isHuntAlive()){
+        while (isHuntAlive()) {
             if (PlayerAction.EXIT.getCommand().equals(userInput)) {
                 break;
+            }
+            if (PlayerAction.ATTACK.getCommand().equals(userInput)) {
+                //How to get the previous Enemy ???? Maybe 'Battle' is a nested loop inside the main loop.
             }
             System.out.println("\nHere will be the main gameplay code...");
             System.out.println("...");
@@ -62,17 +60,17 @@ public class GameApp {
             //If game just started the first encounter is location
             if (gameJustStarted) {
                 Location location = mainEncounter.generateLocation();
-                int stepsInLocation = location.getNumberOfSteps(); // todo: maybe use this in a loop ?
+                int stepsInLocation = location.getNumberOfSteps(); // maybe use this in a loop ?
                 gameJustStarted = false;
                 String message = location.pickUpAvailableMessage();
                 System.out.println("This is the messaged I found");
                 System.out.println(message);
-            }
-            else {
+            } else {
                 //todo
             }
 
-
+            //add last message to path in order to create a sequence of the hero's path
+            path.add("Last message after");
 
 
             // Here will be the choices and actions of the user
@@ -91,11 +89,9 @@ public class GameApp {
         System.out.println("Your adventure ends here!\n");
         if (!heroIsAlive) {
             System.out.println("You are dead.");
-        }
-        else if (PlayerAction.EXIT.getCommand().equals(userInput)) {
+        } else if (PlayerAction.EXIT.getCommand().equals(userInput)) {
             System.out.println("You chose to abandon the poor hobbits and smoke leaf at Prancing Pony!");
-        }
-        else if (hobbitsRescued) {
+        } else if (hobbitsRescued) {
             System.out.println("Merry and Pippin are in safe hands now. You are a true Middle Earth hero! Next quest is to destroy the Ring of Power");
         }
 
