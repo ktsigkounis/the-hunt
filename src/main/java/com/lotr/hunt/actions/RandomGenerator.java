@@ -1,5 +1,6 @@
 package com.lotr.hunt.actions;
 
+import com.lotr.hunt.entities.Enemy;
 import com.lotr.hunt.entities.Location;
 
 /**
@@ -10,7 +11,7 @@ public interface RandomGenerator {
 
     public void generateEncounter();
 
-    public void generateEnemy();
+    public Enemy generateEnemy();
 
     public Location generateLocation();
 

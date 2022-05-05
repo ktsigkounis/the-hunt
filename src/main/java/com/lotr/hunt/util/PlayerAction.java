@@ -10,7 +10,8 @@ public enum PlayerAction {
     INFO("I", "Hero's information"),
     MOVE_FORWARD("MF", "Move forward"),
     MOVE_BACK("MB", "Move back"),
-    SEARCH_CHEST("S", "Search chest");
+    SEARCH_CHEST("S", "Search chest"),
+    DRINK_POTION("D", "Drink potion");
 
     PlayerAction(String command, String display){
         this.command = command;

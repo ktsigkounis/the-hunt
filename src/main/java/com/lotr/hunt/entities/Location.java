@@ -16,4 +16,14 @@ public class Location extends Encounter {
     }
 
     private int numberOfSteps;
+
+    public int getCurrentStep() {
+        return currentStep;
+    }
+
+    public void setCurrentStep(int currentStep) {
+        this.currentStep = currentStep;
+    }
+
+    private int currentStep;
 }

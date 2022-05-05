@@ -16,4 +16,6 @@ public interface Action {
 
     public void drinkPotion(Hero hero);
 
+    public int rollDice();
+
 }

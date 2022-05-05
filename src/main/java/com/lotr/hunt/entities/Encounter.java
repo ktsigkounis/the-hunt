@@ -4,9 +4,6 @@ import com.lotr.hunt.actions.RandomGenerator;
 import com.lotr.hunt.entities.location.Forest;
 import com.lotr.hunt.entities.location.Plain;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,6 +16,16 @@ public class Encounter implements RandomGenerator {
     private boolean forestAvailable;
     private boolean plainAvailable;
     private boolean tombsAvailable;
+
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(Location currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+    private Location currentLocation;
 
 
     public Encounter() {
@@ -47,7 +54,8 @@ public class Encounter implements RandomGenerator {
     }
 
     @Override
-    public void generateEnemy() {
+    public Enemy generateEnemy() {
+        return null;
     }
 
     @Override

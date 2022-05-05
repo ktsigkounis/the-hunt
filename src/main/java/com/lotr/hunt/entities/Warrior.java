@@ -2,6 +2,8 @@ package com.lotr.hunt.entities;
 
 import com.lotr.hunt.actions.Action;
 
+import java.util.Random;
+
 /**
  * @author Konstantinos Tsigkounis
  * @date 02/05/2022
@@ -70,7 +72,14 @@ public class Warrior implements Action {
 
     @Override
     public void drinkPotion(Hero hero) {
-        int heroHP = hero.getHpPoints();
-        hero.setHpPoints(heroHP + 10);
+        if (hero.getPotions() > 0) {
+            int heroHP = hero.getHpPoints();
+            hero.setHpPoints(heroHP + 10);
+        }
+    }
+
+    @Override
+    public int rollDice() {
+        return new Random().nextInt(1,6);
     }
 }

@@ -17,10 +17,15 @@ public class Forest extends Location {
         put("Forest1",1);
         put("Forest2",1);
         put("Forest3",1);
+        put("Forest4",1);
+        put("Forest5",1);
+        put("BattleForest1",1);
+        put("BattleForest2",1);
     }};
 
     public Forest() {
         generateNumberOfSteps();
+        setCurrentStep(0);
         setMessages(forestMessages);
     }
 
